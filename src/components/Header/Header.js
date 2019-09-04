@@ -4,31 +4,23 @@ import {Link} from "react-router-dom";
 
 export default class Header extends Component {
 
-/*
-<ul className="navbar-nav mr-auto">
-<li className="nav-item active">
-<a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-</li>
-    */
     render() {
         return  (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-            <div className="container">
-                <div className="col-md-12">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                <div className="container">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/">Home</Link>
+                            <Link className="nav-link" to="/"><i className="fa fa-home"></i> Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/manage_categories">Categories</Link>
+                            <Link className="nav-link" to="/manage_categories"><i className="fa fa-sitemap"></i> Categories</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/manage_recipes">Recipes</Link>
+                            <Link className="nav-link" to="/manage_recipes"><i className="fa fa-cutlery"></i> Recipes</Link>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </nav>
         );
     }
   

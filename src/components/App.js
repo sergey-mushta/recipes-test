@@ -9,13 +9,12 @@ function App() {
   return (
       <Router>
           <Header />
-          <div className="container">
-                  <Route path="/"  render={() => <h2>Welcome to recipes backend</h2>}  exact />
-                  <Route path="/manage_categories/" component={ManageCategories} />
-                  <Route path="/manage_recipes/" component={ManageRecipes} />
+          <div className="container mt-3">
+              <Route path="/"  render={() => <h2>Welcome to recipes backend</h2>}  exact />
+              <Route path="/manage_categories/" component={ManageCategories} />
+              <Route path="/manage_recipes/" component={ManageRecipes} />
           </div>
       </Router>
-
   );
 }
 
