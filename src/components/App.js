@@ -10,7 +10,7 @@ function App() {
       <Router>
           <Header />
           <div className="container mt-3">
-              <Route path="/"  render={() => <h2>Welcome to recipes backend</h2>}  exact />
+              <Route path="/"  render={() => <h3>Welcome to recipes backend</h3>}  exact />
               <Route path="/manage_categories/" component={ManageCategories} />
               <Route path="/manage_recipes/" component={ManageRecipes} />
           </div>
