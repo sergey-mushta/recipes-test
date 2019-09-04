@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export default class Header extends Component {
 
@@ -10,13 +10,13 @@ export default class Header extends Component {
                 <div className="container">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/"><i className="fa fa-home"></i> Home</Link>
+                            <NavLink className="nav-link" exact to="/" activeClassName="active"><i className="fa fa-home"></i> Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/manage_categories"><i className="fa fa-sitemap"></i> Categories</Link>
+                            <NavLink className="nav-link" to="/manage_categories" activeClassName="active"><i className="fa fa-sitemap"></i> Categories</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/manage_recipes"><i className="fa fa-cutlery"></i> Recipes</Link>
+                            <NavLink className="nav-link" to="/manage_recipes" activeClassName="active"><i className="fa fa-cutlery"></i> Recipes</NavLink>
                         </li>
                     </ul>
                 </div>
