@@ -1,8 +1,4 @@
-export const getCategories = () => ({
-    type: 'GET_CATEGORIES',
-});
-
-export const getNews = () => ({
-    type: 'GET_NEWS',
+export const getAllCategories = () => ({
+    type: 'GET_ALL_CATEGORIES',
 });
 

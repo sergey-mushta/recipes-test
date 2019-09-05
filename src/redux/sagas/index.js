@@ -1,19 +1,20 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
 
-function* fetchNews() {
+import * as api_urls from "../../config/";
 
-    const json = yield fetch('https://newsapi.org/v1/articles?source=cnn&apiKey=c39a26d9c12f48dba2a5c00e35684ecc')
+function* fetchAllCategories() {
+    const json = yield fetch(api_urls.API_CATEGORY_ALL)
         .then(response => response.json());
 
-    yield put({ type: "NEWS_RECEIVED", json: json.articles || [{ error: json.message }] });
+    yield put({ type: "ALL_CATEGORIES_RECEIVED", json: json || [{ error: json.message }] });
 }
 
 function* actionWatcher() {
-    yield takeLatest('GET_NEWS', fetchNews)
+    yield takeLatest('GET_ALL_CATEGORIES', fetchAllCategories)
 }
 
 
-export default function* rootSaga() {
+export default function* saga() {
     yield all([
         actionWatcher(),
     ]);
