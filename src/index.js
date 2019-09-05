@@ -11,12 +11,12 @@ import reducer from './redux/reducers';
 import App from './components/App';
 
 
-//const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     reducer,
-//    applyMiddleware(sagaMiddleware),
+    applyMiddleware(sagaMiddleware),
 );
-//sagaMiddleware.run(saga);
+sagaMiddleware.run(saga);
 
 render(
     (<Provider store={store}>

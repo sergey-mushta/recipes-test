@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./LoadingSpinner.css";
+import {connect} from "react-redux";
 
-export default class LoadingSpinner extends Component {
-    render() {
-        return  (
-            <div className="loader">Loading...</div>
-        );
-    }
-  
-}
+let LoadingSpinner = ({ loading }) => (
+    loading ?
+        <div className="loader">Loading...</div>
+            :
+        null
+);
+
+const mapStateToProps = (state) => ({loading: state.loading})
+LoadingSpinner = connect(mapStateToProps,null)(LoadingSpinner)
+export default LoadingSpinner;
