@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 
 class ErrorGlobal extends Component {
     render() {
-        console.log(this.props.errorGlobalMsg);
         return (
             <Alert variant="danger">
                 Something wrong with server. Please try again later. Response: {this.props.errorGlobalMsg}

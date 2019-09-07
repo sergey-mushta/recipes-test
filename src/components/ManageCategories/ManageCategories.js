@@ -8,10 +8,6 @@ import Button from "react-bootstrap/Button";
 class ManageCategories extends Component {
 
     componentDidMount() {
-        this.update();
-    }
-
-    update() {
         this.props.getAllCategories();
     }
 

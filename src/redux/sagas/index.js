@@ -1,7 +1,6 @@
 import { put, takeLatest, all } from 'redux-saga/effects';
 
 import * as api_urls from "../../config/";
-import * as actions from "../actions/"
 
 function* fetchAllCategories() {
     try {
@@ -14,7 +13,7 @@ function* fetchAllCategories() {
 }
 
 function* actionWatcher() {
-    yield takeLatest(actions.getAllCategories, fetchAllCategories)
+    yield takeLatest('GET_ALL_CATEGORIES', fetchAllCategories)
 }
 
 

@@ -5,7 +5,7 @@ import Header from "./Header";
 import ManageCategories from "./ManageCategories";
 import ManageRecipes from "./ManageRecipes";
 
-import ModalConfirmDelete from "./ModalCommon";
+import ModalCommon from "./ModalCommon";
 import ErrorGlobal from "./ErrorGlobal";
 import {connect} from "react-redux";
 import ManageArticles from "./ManageArticles";
@@ -22,7 +22,7 @@ class App extends Component {
                     <Route path="/manage_recipes/" component={ManageRecipes}/>
                     <Route path="/manage_articles/" component={ManageArticles}/>
                 </div>
-                <ModalConfirmDelete show={false}/>
+                <ModalCommon {...this.props.modalData} />
             </Router>
         );
     }
