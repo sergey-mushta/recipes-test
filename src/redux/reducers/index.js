@@ -1,14 +1,13 @@
 const reducer = (state = {}, action) => {
     switch (action.type) {
         case 'GET_ALL_CATEGORIES': {
-            return {...state, categories: [], loading: true, error:false}
+            return {...state, categories: undefined, loading: true}
         }
         case 'ALL_CATEGORIES_RECEIVED': {
-            return {...state, categories: action.json, loading: false, error: false}
+            return {...state, categoriesOk: action.ok, categories: action.json, loading: false, errorGlobal: false}
         }
-        case 'API_ERROR': {
-            console.log(action);
-            return {...state, categories: [], loading: false, error: true, errorMsg: action.err}
+        case 'SERVER_ERROR': {
+            return {...state, loading: false, errorGlobal: true, errorGlobalMsg: action.err.toString()}
         }
         default:
             return state;

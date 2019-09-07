@@ -5,19 +5,21 @@ import {NavLink} from "react-router-dom";
 export default class Header extends Component {
 
     render() {
+        const links = [
+            {to:'/', exact: true, icon: 'home', text: 'Home'},
+            {to:'/manage_categories', icon: 'sitemap', text: 'Categories'},
+            {to:'/manage_recipes', icon: 'cutlery', text: 'Recipes'},
+            {to:'/manage_articles', icon: 'file-text-o', text: 'Articles'},
+        ];
+
         return  (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                 <div className="container">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" exact to="/" activeClassName="active"><i className="fa fa-home"></i> Home</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/manage_categories" activeClassName="active"><i className="fa fa-sitemap"></i> Categories</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/manage_recipes" activeClassName="active"><i className="fa fa-cutlery"></i> Recipes</NavLink>
-                        </li>
+                        { links.map((item) =>  {
+                            return (
+                                <li className="nav-item" key={'header_url_to_' + item.to }><NavLink className="nav-link" exact={item.exact} to={item.to} activeClassName="active"><i className={'fa fa-'+item.icon}></i> {item.text}</NavLink></li>                            );
+                        }) }
                     </ul>
                 </div>
             </nav>

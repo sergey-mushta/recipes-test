@@ -20,7 +20,7 @@ class ManageCategories extends Component {
             <span>
                 <h3 className="mb-3">Manage Categories</h3>
                 <LoadingSpinner />
-                {this.props.categories !== undefined && (
+                {this.props.categories !== undefined && !this.props.loading && (
                     <>
                         <Button variant="secondary" size="sm" className="m-1 mb-3"><i className="fa fa-plus"></i> Add category</Button>
                         <CategoriesListItems items={this.props.categories}/>
@@ -32,7 +32,7 @@ class ManageCategories extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ categories: state.categories});
+const mapStateToProps = (state) => ({ categories: state.categories, loading: state.loading });
 
 const mapDispatchToProps = {getAllCategories: getAllCategories};
 
