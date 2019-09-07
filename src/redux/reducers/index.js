@@ -1,6 +1,8 @@
+import * as actions from "../actions";
+
 const reducer = (state = {}, action) => {
     switch (action.type) {
-        case 'GET_ALL_CATEGORIES': {
+        case actions.getAllCategories: {
             return {...state, categories: undefined, loading: true}
         }
         case 'ALL_CATEGORIES_RECEIVED': {
