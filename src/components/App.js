@@ -5,6 +5,8 @@ import Header from "./Header";
 import ManageCategories from "./ManageCategories";
 import ManageRecipes from "./ManageRecipes";
 
+import ModalConfirmDelete from "./ModalConfirmDelete";
+
 function App() {
   return (
       <Router>
@@ -14,6 +16,7 @@ function App() {
               <Route path="/manage_categories/" component={ManageCategories} />
               <Route path="/manage_recipes/" component={ManageRecipes} />
           </div>
+          <ModalConfirmDelete show={false} />
       </Router>
   );
 }

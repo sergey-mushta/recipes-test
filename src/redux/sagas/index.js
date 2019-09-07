@@ -3,10 +3,13 @@ import { put, takeLatest, all } from 'redux-saga/effects';
 import * as api_urls from "../../config/";
 
 function* fetchAllCategories() {
-    const json = yield fetch(api_urls.API_CATEGORY_ALL)
-        .then(response => response.json());
-
-    yield put({ type: "ALL_CATEGORIES_RECEIVED", json: json || [{ error: json.message }] });
+    try {
+        const json = yield fetch(api_urls.API_CATEGORY_ALL)
+            .then(response => response.json());
+        yield put({type: "ALL_CATEGORIES_RECEIVED", json: json});
+    } catch(err) {
+        yield put({type: "API_ERROR", errorMsg: err });
+    }
 }
 
 function* actionWatcher() {
