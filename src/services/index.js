@@ -2,7 +2,7 @@ export default function prepareCategoriesForSelect(categories, currentCategoryId
     // TODO: test parent updates; test trees
     let itemsOut = [];
     if (level === 0) {
-        itemsOut.push({key: null, value: '-'});
+        itemsOut.push({key: '', value: '-'});
     }
     categories.filter((e)=>{ return e.parentId === currentParentId }).sort((a, b) => a.title.localeCompare(b.title)).map((item) => {
        itemsOut.push({

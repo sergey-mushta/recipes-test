@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from "react-bootstrap/Button";
 import {initModal} from "../../redux/actions/";
 import {connect} from "react-redux";
-import FormCommon from "../FormCommon/"
+import FormCommon from "../FormCommon"
 import {EDIT_CATEGORY_FORM} from "../../forms";
 import prepareCategoriesForSelect from "../../services";
 

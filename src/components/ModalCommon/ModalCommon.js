@@ -9,6 +9,7 @@ class ModalCommon extends Component {
 
     static defaultProps = {
         show: false,
+        isForm: false,
         titleText: '[TITLE]',
         bodyText: '[BODY]',
         closeBtnText: '[CLOSE]',

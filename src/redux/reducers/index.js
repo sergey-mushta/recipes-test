@@ -18,7 +18,6 @@ const reducer = (state = {}, action) => {
             return {...state, modalData: action.modalData }
         }
         case 'CONFIRM_MODAL_ACTION': {
-            console.log(action);
             return state;
         }
         default:

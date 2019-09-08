@@ -4,15 +4,17 @@ import {getAllCategories, initModal} from '../../redux/actions';
 import { connect } from "react-redux";
 import CategoriesListItems from "../CategoriesListItems";
 import Button from "react-bootstrap/Button";
-import FormCommon from "../FormCommon/";
+import FormCommon from "../FormCommon";
 import {ADD_CATEGORY_FORM} from "../../forms";
+import prepareCategoriesForSelect from "../../services";
 
 class ManageCategories extends Component {
 
     initAddModal() {
         this.props.initModal({
             titleText: 'Add new category',
-            bodyText: <FormCommon {...ADD_CATEGORY_FORM} />,
+            isForm: true,
+            bodyText: <FormCommon {...ADD_CATEGORY_FORM} selectOptions={{ parentId: prepareCategoriesForSelect(this.props.categories) }} />,
             closeBtnText: 'Cancel',
             confirmBtnText: 'Add',
             closeBtnVariant: 'secondary',

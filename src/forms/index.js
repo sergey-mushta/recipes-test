@@ -5,7 +5,7 @@ export const ADD_CATEGORY_FORM = {
             name: 'parentId',
             type: 'select',
             required: false,
-            default: null
+            default: ''
         },
         {
             title: "Name",
@@ -15,7 +15,7 @@ export const ADD_CATEGORY_FORM = {
             default: ''
         }
     ],
-    onSubmit: (props) => { console.log('FormSubmitted', props) }
+    onSubmit: (state, props) => { console.log('FormSubmitted', state, props) }
 }
 
 export const EDIT_CATEGORY_FORM = ADD_CATEGORY_FORM;
