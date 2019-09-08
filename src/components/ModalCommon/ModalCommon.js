@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
-import {hideModal} from "../../redux/actions/"
+import {confirmModalAction, hideModal} from "../../redux/actions/"
 
 
 class ModalCommon extends Component {
 
     static defaultProps = {
+        show: false,
         titleText: '[TITLE]',
         bodyText: '[BODY]',
         closeBtnText: '[CLOSE]',
@@ -15,7 +16,7 @@ class ModalCommon extends Component {
         closeBtnVariant: 'secondary',
         confirmBtnVariant: 'danger',
         closeHandler: (props) => { props.hideModal(); },
-        confirmHandler: (props) => { props.hideModal(); },
+        confirmHandler: (props) => { props.hideModal(); props.confirmModalAction(); },
     }
 
     render() {
@@ -45,7 +46,7 @@ class ModalCommon extends Component {
 }
 
 const mapStateToProps = (state) => ({ ...state.modalData });
-const mapDispatchToProps = { hideModal: hideModal };
+const mapDispatchToProps = { hideModal: hideModal, confirmModalAction: confirmModalAction };
 
 ModalCommon = connect(mapStateToProps,mapDispatchToProps)(ModalCommon);
 export default ModalCommon;

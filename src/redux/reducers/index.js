@@ -10,9 +10,16 @@ const reducer = (state = {}, action) => {
             return {...state, loading: false, errorGlobal: true, errorGlobalMsg: action.err.toString()}
         }
         case 'HIDE_MODAL': {
-            const modalData = [...state.modalData];
+            const modalData = {...state.modalData};
             modalData.show = false;
             return {...state, modalData: modalData}
+        }
+        case 'INIT_MODAL': {
+            return {...state, modalData: action.modalData }
+        }
+        case 'CONFIRM_MODAL_ACTION': {
+            console.log(action);
+            return state;
         }
         default:
             return state;
