@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import {updateFormItem} from "../../redux/actions";
+
 
 class FormCommon extends Component {
     static defaultProps = {
@@ -21,6 +23,7 @@ class FormCommon extends Component {
     }
 
     onChange(itemName, e) {
+        this.props.updateFormItem({ name: itemName,value: e.target.value });
         this.setState({[itemName]: e.target.value});
     }
 
@@ -65,7 +68,8 @@ class FormCommon extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { categories: state.formData.categories }
+    return { currentFormValues: state.currentFormValues }
 };
-FormCommon = connect(mapStateToProps, null)(FormCommon);
+const mapDispatchToProps = {updateFormItem: updateFormItem};
+FormCommon = connect(mapStateToProps, mapDispatchToProps)(FormCommon);
 export default FormCommon;

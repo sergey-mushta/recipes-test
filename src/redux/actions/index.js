@@ -21,6 +21,13 @@ export const initModal = (modalData) => {
 export const confirmModalAction = (addData) => {
     return {
         type: 'CONFIRM_MODAL_ACTION',
-        addData: addData,
+        addData
+    }
+}
+
+export const updateFormItem = (itemData) => {
+    return {
+        type: 'UPDATE_FORM_ITEM',
+        itemData
     }
 }

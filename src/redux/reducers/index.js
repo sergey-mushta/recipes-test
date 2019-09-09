@@ -9,6 +9,11 @@ const reducer = (state = {}, action) => {
         case 'SERVER_ERROR': {
             return {...state, loading: false, errorGlobal: true, errorGlobalMsg: action.err.toString()}
         }
+        case 'UPDATE_FORM_ITEM': {
+            let currentFormValues = {...state.currentFormValues};
+            currentFormValues[action.itemData.name] = action.itemData.value;
+            return {...state, currentFormValues}
+        }
         case 'HIDE_MODAL': {
             const modalData = {...state.modalData};
             modalData.show = false;
