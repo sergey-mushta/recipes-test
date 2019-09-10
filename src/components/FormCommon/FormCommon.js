@@ -47,7 +47,7 @@ class FormCommon extends Component {
                                     case 'select': {
                                         return (<select {...commonParams} >
                                             {this.props.selectOptions[item.name] !== undefined && this.props.selectOptions[item.name].map((option) => {
-                                                return <option key={'form_select_'+item.name+option.key} name={option.key}>{option.value}</option>
+                                                return <option key={'form_select_'+item.name+option.key} name={option.key}>{option.value.replace(/ /g, "\u00a0")}</option>
                                             })}
                                         </select>);
                                     }

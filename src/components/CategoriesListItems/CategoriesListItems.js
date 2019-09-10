@@ -9,10 +9,10 @@ import prepareCategoriesForSelect from "../../services";
 class CategoriesListItems extends Component {
     static defaultProps = { parentId: null }
 
-    initEditModal(categoryId) {
+    initEditModal(categoryId, props) {
         this.props.initModal({
             titleText: 'Edit category',
-            bodyText: <FormCommon {...EDIT_CATEGORY_FORM} values={ this.props.items.find((e) => e['_id'] === categoryId) } selectOptions={{ parentId: prepareCategoriesForSelect(this.props.categories) }}/>,
+            bodyText: <FormCommon {...EDIT_CATEGORY_FORM} values={ this.props.items.find((e) => e['_id'] === categoryId) } selectOptions={{ parentId: prepareCategoriesForSelect(this.props.items) }}/>,
             closeBtnText: 'Cancel',
             confirmBtnText: 'Edit',
             closeBtnVariant: 'secondary',
@@ -44,9 +44,9 @@ class CategoriesListItems extends Component {
                     return (
                         <li key={item._id}>
                             {item.title}
-                            <Button variant="secondary" size="sm" className="ml-2 m-1" onClick={() => { this.initEditModal(item._id) } }><i className="fa fa-pencil"></i></Button>
-                            <Button variant="danger" size="sm" className="m-1" onClick={() => { this.initDeleteModal(item._id) } }><i className="fa fa-trash"></i></Button>
-                            <CategoriesListItems key={'sub_'+item._id} items={this.props.items} parentId={item._id}/>
+                            <Button variant="secondary" size="sm" className="ml-2 m-1" onClick={() => { this.initEditModal(item._id, this.props) } }><i className="fa fa-pencil"></i></Button>
+                            <Button variant="danger" size="sm" className="m-1" onClick={() => {  this.initDeleteModal(item._id) } }><i className="fa fa-trash"></i></Button>
+                            <CategoriesListItems key={'sub_'+item._id} items={this.props.items} parentId={item._id} initModal={this.props.initModal}/>
                         </li>
                     );
                 }) : ''}
@@ -56,7 +56,6 @@ class CategoriesListItems extends Component {
 
 }
 
-const mapStateToProps = (state) => ({ categories: state.categories });
 const mapDispatchToProps = {initModal: initModal};
-CategoriesListItems = connect(mapStateToProps, mapDispatchToProps)(CategoriesListItems);
+CategoriesListItems = connect(null, mapDispatchToProps)(CategoriesListItems);
 export default CategoriesListItems;
