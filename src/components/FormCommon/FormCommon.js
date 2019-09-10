@@ -40,7 +40,7 @@ class FormCommon extends Component {
                         onChange: (e) => this.onChange(item.name, e),
                     }
                     return <div className="form-group" key={'form_'+item.name}>
-                        <label htmlFor={'form_input_'+item.name}>{item.title}</label>
+                        <label htmlFor={'form_input_'+item.name}>{item.required && <span className="font-weight-bold text-danger">*</span> } {item.title}</label>
                         {(() =>
                             {
                                 switch (item.type) {
