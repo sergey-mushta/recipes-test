@@ -7,18 +7,27 @@ export const getAllCategories = () => {
 }
 
 export const createCategory = (params) => {
+    const paramsOut = {...params};
+    if (paramsOut.parentId === '') {
+        paramsOut.parentId = null;
+    }
     return {
         type: 'CREATE_CATEGORY',
-        params
+        params: paramsOut
     }
 }
 
 export const editCategory = (params) => {
+    const paramsOut = {...params};
+    if (paramsOut.parentId === '') {
+        paramsOut.parentId = null;
+    }
     return {
         type: 'EDIT_CATEGORY',
-        params
+        params: paramsOut
     }
 }
+
 
 
 export const deleteCategory = (_id) => {

@@ -6,7 +6,7 @@ import CategoriesListItems from "../CategoriesListItems";
 import Button from "react-bootstrap/Button";
 import FormElements from "../FormElements";
 import {ADD_CATEGORY_FORM} from "../../forms";
-import {prepareCategoriesForSelect, deleteCategoryFromContent} from "../../services";
+import {prepareCategoriesForSelect} from "../../services";
 
 class ManageCategories extends Component {
 
@@ -36,7 +36,6 @@ class ManageCategories extends Component {
                 <LoadingSpinner />
                 {this.props.categories !== undefined && !this.props.loading && (
                     <>
-                        <button onClick={() => deleteCategoryFromContent(this.props.categories, '5d765c5cf8a05f040033ec05' )}>test</button>
                         <Button variant="secondary" size="sm" className="m-1 mb-3"  onClick={() => { this.initAddModal() } }><i className="fa fa-plus"></i> Add category</Button>
                         <CategoriesListItems items={this.props.categories}/>
                     </>

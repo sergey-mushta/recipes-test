@@ -1,4 +1,4 @@
-export function prepareCategoriesForSelect(categories, currentCategoryId = null, currentParentId = null, level = 0) {
+export function prepareCategoriesForSelect(categories, currentParentId = null, level = 0) {
     let itemsOut = [];
     if (level === 0) {
         itemsOut.push({key: '', value: '-'});
@@ -13,34 +13,23 @@ export function prepareCategoriesForSelect(categories, currentCategoryId = null,
             value: title,
             level: level,
         });
-        itemsOut = itemsOut.concat(prepareCategoriesForSelect(categories, currentCategoryId, item._id, level + 1));
+        itemsOut = itemsOut.concat(prepareCategoriesForSelect(categories, item._id, level + 1));
         return true;
     });
     return itemsOut;
 }
 
 export function deleteCategoryFromContent(categories, currentCategoryId = null) {
-    console.log('in',categories);
-    let itemsOut = [];
-    if (currentCategoryId !== null) {
-        itemsOut = categories.filter((e) => {
-            return e._id !== currentCategoryId;
-        });
-    }
+    let idsToDelete = [currentCategoryId];
 
-    itemsOut = deleteCategoryByParentId(itemsOut, currentCategoryId);
-    console.log('out',itemsOut);
-    return itemsOut;
-}
-
-function deleteCategoryByParentId(categories, currentParentId = null) {
-    let itemsOut = categories.filter((e) => {
-        return e.parentId !== currentParentId;
+    prepareCategoriesForSelect(categories, currentCategoryId, 1).map((item) => {
+        idsToDelete.push(item.key);
+        return true;
     });
 
-    console.log(itemsOut);
-    return itemsOut;
+    return categories.filter((item) => { return idsToDelete.indexOf(item._id) === -1 })
 }
+
 
 export function prepareCurrentFormErrors(json) {
     let out = {};

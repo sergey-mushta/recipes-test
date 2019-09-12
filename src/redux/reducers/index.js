@@ -1,4 +1,4 @@
-import {prepareCurrentFormErrors, recursiveDeleteCategoryFromContent} from "../../services";
+import {deleteCategoryFromContent, prepareCurrentFormErrors} from "../../services";
 
 const reducer = (state = {}, action) => {
     switch (action.type) {
@@ -11,8 +11,7 @@ const reducer = (state = {}, action) => {
             return {...state, categoriesOk: action.ok, categories: action.json, loading: false, errorGlobal: false }
         }
 
-        case ['CREATE_CATEGORY','EDIT_CATEGORY']: {
-            console.log('edit')
+        case 'CREATE_CATEGORY': {
             return {...state, currentFormErrors: undefined}
         }
 
@@ -26,6 +25,10 @@ const reducer = (state = {}, action) => {
             } else {
                 return { ...state, currentFormErrors: prepareCurrentFormErrors(action.json) };
             }
+        }
+
+        case 'EDIT_CATEGORY': {
+            return {...state, currentFormErrors: undefined}
         }
 
         case 'EDIT_CATEGORY_RECEIVED': {
@@ -45,8 +48,7 @@ const reducer = (state = {}, action) => {
             const modalData = {...state.modalData};
             modalData.show = false;
             if (action.ok) {
-//                const categories = recursiveDeleteCategoryFromContent(state.categories, action.urlSuffix);
-                return {...state,/* categories, */ modalData, errorGlobal: false}
+                return {...state, categories: deleteCategoryFromContent(state.categories, action.urlSuffix), modalData, errorGlobal: false}
             } else {
                 return {...state, modalData, errorGlobal: true, errorGlobalMsg: action.json[0].message }
             }
@@ -58,9 +60,13 @@ const reducer = (state = {}, action) => {
             return {...state, loading: false, errorGlobal: true, errorGlobalMsg: action.err.toString()}
         }
         case 'UPDATE_FORM_ITEM': {
-            let currentFormValues = {...state.currentFormValues};
-            currentFormValues[action.itemData.name] = action.itemData.value;
-            return {...state, currentFormValues}
+            if (action.itemData === null) {
+                return {...state, currentFormValues: undefined}
+            } else {
+                let currentFormValues = {...state.currentFormValues};
+                currentFormValues[action.itemData.name] = action.itemData.value;
+                return {...state, currentFormValues}
+            }
         }
         case 'HIDE_MODAL': {
             const modalData = {...state.modalData};
@@ -68,7 +74,7 @@ const reducer = (state = {}, action) => {
             return {...state, modalData}
         }
         case 'INIT_MODAL': {
-            return {...state, modalData: action.modalData }
+            return {...state, modalData: action.modalData, currentFormErrors: undefined  }
         }
         default:
             return state;

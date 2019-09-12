@@ -20,7 +20,7 @@ class CategoriesListItems extends Component {
             confirmBtnVariant: 'success',
             confirmAddData: { type: 'EDIT_CATEGORY', '_id': categoryId  },
             closeHandler: (props) => { props.hideModal(); },
-            formSubmitHandler: (e, props) => { console.log(props);this.props.editCategory(props.currentFormValues); e.preventDefault(); }
+            formSubmitHandler: (e, props) => { this.props.editCategory(props.currentFormValues); e.preventDefault(); }
         });
     }
 

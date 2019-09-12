@@ -15,6 +15,7 @@ class FormElements extends Component {
     constructor(props) {
         super(props);
         let values = {};
+        this.props.updateFormItem(null); // clear at first
         this.props.items.map((item) => {
             const itemValue = (this.props.values[item.name] !== undefined) ? this.props.values[item.name] : item.default;
             this.props.updateFormItem({ name: item.name,value: itemValue });
