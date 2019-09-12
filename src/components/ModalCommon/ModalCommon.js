@@ -17,7 +17,7 @@ class ModalCommon extends Component {
         closeBtnVariant: 'secondary',
         confirmBtnVariant: 'danger',
         closeHandler: (props) => { props.hideModal(); },
-        confirmHandler: (props) => { props.hideModal(); props.confirmModalAction(); },
+        confirmHandler: () => { },
         formSubmitHandler: (e,props) => { e.preventDefault() },
     }
 

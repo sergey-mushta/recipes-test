@@ -6,7 +6,7 @@ class ErrorGlobal extends Component {
     render() {
         return (
             <Alert variant="danger">
-                Something wrong with server. Please try again later. Response: {this.props.errorGlobalMsg}
+                Something gone wrong: {this.props.errorGlobalMsg}
             </Alert>
         );
     }

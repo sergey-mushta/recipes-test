@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import Button from "react-bootstrap/Button";
-import {initModal} from "../../redux/actions/";
+import {editCategory, deleteCategory, initModal} from "../../redux/actions/";
 import {connect} from "react-redux";
 import FormElements from "../FormElements"
 import {EDIT_CATEGORY_FORM} from "../../forms";
-import prepareCategoriesForSelect from "../../services";
+import { prepareCategoriesForSelect } from "../../services";
 
 class CategoriesListItems extends Component {
     static defaultProps = { parentId: null }
 
-    initEditModal(categoryId, props) {
+    initEditModal(categoryId) {
         this.props.initModal({
             titleText: 'Edit category',
             isForm: true,
@@ -20,8 +20,7 @@ class CategoriesListItems extends Component {
             confirmBtnVariant: 'success',
             confirmAddData: { type: 'EDIT_CATEGORY', '_id': categoryId  },
             closeHandler: (props) => { props.hideModal(); },
-            confirmHandler: (props) => { },
-            formSubmitHandler: (e, props) => { console.log("form submit", props); e.preventDefault(); }
+            formSubmitHandler: (e, props) => { console.log(props);this.props.editCategory(props.currentFormValues); e.preventDefault(); }
         });
     }
 
@@ -35,7 +34,7 @@ class CategoriesListItems extends Component {
             confirmBtnVariant: 'danger',
             confirmAddData: { type: 'DELETE_CATEGORY', '_id': categoryId },
             closeHandler: (props) => { props.hideModal(); },
-            confirmHandler: (props) => { console.log('confirm', props.confirmAddData._id); },
+            confirmHandler: (props) => { this.props.deleteCategory(props.confirmAddData._id); },
         });
     }
 
@@ -46,9 +45,9 @@ class CategoriesListItems extends Component {
                     return (
                         <li key={item._id}>
                             {item.title}
-                            <Button variant="secondary" size="sm" className="ml-2 m-1" onClick={() => { this.initEditModal(item._id, this.props) } }><i className="fa fa-pencil"></i></Button>
+                            <Button variant="secondary" size="sm" className="ml-2 m-1" onClick={() => { this.initEditModal(item._id) } }><i className="fa fa-pencil"></i></Button>
                             <Button variant="danger" size="sm" className="m-1" onClick={() => {  this.initDeleteModal(item._id) } }><i className="fa fa-trash"></i></Button>
-                            <CategoriesListItems key={'sub_'+item._id} items={this.props.items} parentId={item._id} initModal={this.props.initModal}/>
+                            <CategoriesListItems key={'sub_'+item._id} items={this.props.items} parentId={item._id} initModal={this.props.initModal} editCategory={this.props.editCategory} deleteCategory={this.props.deleteCategory} />
                         </li>
                     );
                 }) : ''}
@@ -58,6 +57,6 @@ class CategoriesListItems extends Component {
 
 }
 
-const mapDispatchToProps = {initModal: initModal};
+const mapDispatchToProps = {initModal: initModal, deleteCategory: deleteCategory, editCategory: editCategory };
 CategoriesListItems = connect(null, mapDispatchToProps)(CategoriesListItems);
 export default CategoriesListItems;
