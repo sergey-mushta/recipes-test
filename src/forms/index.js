@@ -14,8 +14,7 @@ export const ADD_CATEGORY_FORM = {
             required: true,
             default: ''
         }
-    ],
-    onSubmit: (state, props) => { console.log('FormSubmitted', state, props) }
+    ]
 }
 
 export const EDIT_CATEGORY_FORM = ADD_CATEGORY_FORM;

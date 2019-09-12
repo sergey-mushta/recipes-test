@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {updateFormItem} from "../../redux/actions";
 
 
-class FormCommon extends Component {
+class FormElements extends Component {
     static defaultProps = {
         items: [],
         values: [],
@@ -23,13 +23,14 @@ class FormCommon extends Component {
     }
 
     onChange(itemName, e) {
+        console.log(e.target.value);
         this.props.updateFormItem({ name: itemName,value: e.target.value });
         this.setState({[itemName]: e.target.value});
     }
 
     render() {
         return (
-            <form>
+            <>
                 {this.props.items.map((item) => {
                     const commonParams = {
                         id: 'form_input_'+item.name,
@@ -47,7 +48,7 @@ class FormCommon extends Component {
                                     case 'select': {
                                         return (<select {...commonParams} >
                                             {this.props.selectOptions[item.name] !== undefined && this.props.selectOptions[item.name].map((option) => {
-                                                return <option key={'form_select_'+item.name+option.key} name={option.key}>{option.value.replace(/ /g, "\u00a0")}</option>
+                                                return <option key={'form_select_'+item.name+option.key} value={option.key}>{option.value.replace(/ /g, "\u00a0")}</option>
                                             })}
                                         </select>);
                                     }
@@ -62,7 +63,7 @@ class FormCommon extends Component {
                         )()}
                     </div>
                 })}
-            </form>
+            </>
         );
     }
 }
@@ -71,5 +72,5 @@ const mapStateToProps = (state) => {
     return { currentFormValues: state.currentFormValues }
 };
 const mapDispatchToProps = {updateFormItem: updateFormItem};
-FormCommon = connect(mapStateToProps, mapDispatchToProps)(FormCommon);
-export default FormCommon;
+FormElements = connect(mapStateToProps, mapDispatchToProps)(FormElements);
+export default FormElements;

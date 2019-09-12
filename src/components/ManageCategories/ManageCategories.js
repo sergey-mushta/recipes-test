@@ -4,7 +4,7 @@ import {getAllCategories, initModal} from '../../redux/actions';
 import { connect } from "react-redux";
 import CategoriesListItems from "../CategoriesListItems";
 import Button from "react-bootstrap/Button";
-import FormCommon from "../FormCommon";
+import FormElements from "../FormElements";
 import {ADD_CATEGORY_FORM} from "../../forms";
 import prepareCategoriesForSelect from "../../services";
 
@@ -14,14 +14,15 @@ class ManageCategories extends Component {
         this.props.initModal({
             titleText: 'Add new category',
             isForm: true,
-            bodyText: <FormCommon {...ADD_CATEGORY_FORM} selectOptions={{ parentId: prepareCategoriesForSelect(this.props.categories) }} />,
+            bodyText: <FormElements {...ADD_CATEGORY_FORM} selectOptions={{ parentId: prepareCategoriesForSelect(this.props.categories) }} />,
             closeBtnText: 'Cancel',
             confirmBtnText: 'Add',
             closeBtnVariant: 'secondary',
             confirmBtnVariant: 'success',
             confirmAddData: { type: 'ADD_CATEGORY' },
             closeHandler: (props) => { props.hideModal(); },
-            confirmHandler: (props) => { props.confirmModalAction(props.confirmAddData);  },
+            confirmHandler: (props) => { },
+            formSubmitHandler: (e, props) => { console.log("form submit", props); e.preventDefault(); }
         });
     }
 
@@ -31,7 +32,7 @@ class ManageCategories extends Component {
 
     render() {
         return  (
-            <span>
+            <>
                 <h3 className="mb-3">Manage Categories</h3>
                 <LoadingSpinner />
                 {this.props.categories !== undefined && !this.props.loading && (
@@ -40,7 +41,7 @@ class ManageCategories extends Component {
                         <CategoriesListItems items={this.props.categories}/>
                     </>
                 )}
-            </span>
+            </>
         );
     }
 

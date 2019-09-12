@@ -22,9 +22,6 @@ const reducer = (state = {}, action) => {
         case 'INIT_MODAL': {
             return {...state, modalData: action.modalData }
         }
-        case 'CONFIRM_MODAL_ACTION': {
-            return state;
-        }
         default:
             return state;
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from "react-bootstrap/Button";
 import {initModal} from "../../redux/actions/";
 import {connect} from "react-redux";
-import FormCommon from "../FormCommon"
+import FormElements from "../FormElements"
 import {EDIT_CATEGORY_FORM} from "../../forms";
 import prepareCategoriesForSelect from "../../services";
 
@@ -12,14 +12,16 @@ class CategoriesListItems extends Component {
     initEditModal(categoryId, props) {
         this.props.initModal({
             titleText: 'Edit category',
-            bodyText: <FormCommon {...EDIT_CATEGORY_FORM} values={ this.props.items.find((e) => e['_id'] === categoryId) } selectOptions={{ parentId: prepareCategoriesForSelect(this.props.items) }}/>,
+            isForm: true,
+            bodyText: <FormElements {...EDIT_CATEGORY_FORM} values={ this.props.items.find((e) => e['_id'] === categoryId) } selectOptions={{ parentId: prepareCategoriesForSelect(this.props.items) }}/>,
             closeBtnText: 'Cancel',
             confirmBtnText: 'Edit',
             closeBtnVariant: 'secondary',
             confirmBtnVariant: 'success',
             confirmAddData: { type: 'EDIT_CATEGORY', '_id': categoryId  },
             closeHandler: (props) => { props.hideModal(); },
-            confirmHandler: (props) => { props.confirmModalAction(props.confirmAddData);  },
+            confirmHandler: (props) => { },
+            formSubmitHandler: (e, props) => { console.log("form submit", props); e.preventDefault(); }
         });
     }
 
@@ -33,7 +35,7 @@ class CategoriesListItems extends Component {
             confirmBtnVariant: 'danger',
             confirmAddData: { type: 'DELETE_CATEGORY', '_id': categoryId },
             closeHandler: (props) => { props.hideModal(); },
-            confirmHandler: (props) => { props.hideModal(); props.confirmModalAction(props.confirmAddData);  },
+            confirmHandler: (props) => { console.log('confirm', props.confirmAddData._id); },
         });
     }
 
