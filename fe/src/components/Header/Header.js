@@ -7,9 +7,6 @@ export default class Header extends Component {
     render() {
         const links = [
             {to:'/', exact: true, icon: 'home', text: 'Home'},
-            {to:'/manage_categories', icon: 'sitemap', text: 'Categories'},
-            {to:'/manage_recipes', icon: 'cutlery', text: 'Recipes'},
-            {to:'/manage_articles', icon: 'file-text-o', text: 'Articles'},
         ];
 
         return  (

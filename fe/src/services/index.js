@@ -12,15 +12,3 @@ export function prepareCategoriesForSelect(categories, hasNull = true, currentPa
     });
     return itemsOut;
 }
-
-export function deleteCategoryFromContent(categories, currentCategoryId = null) {
-    let idsToDelete = [currentCategoryId];
-    prepareCategoriesForSelect(categories, false, currentCategoryId, 1).map((item) => { idsToDelete.push(item.key); return true; });
-    return categories.filter((item) => { return idsToDelete.indexOf(item._id) === -1 })
-}
-
-export function prepareCurrentFormErrors(json) {
-    let out = {};
-    json.map((item) => { out[item.param] = item.message; return true; });
-    return out;
-}
