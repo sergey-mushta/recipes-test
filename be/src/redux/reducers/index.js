@@ -36,9 +36,9 @@ const reducer = (state = {}, action) => {
                 return { ...state, currentFormErrors: prepareCurrentFormErrors(action.json), errorGlobal: false };
             }
         }
-/*        case 'DELETE_RECIPE_RECEIVED':
-            return action.ok ? {...state, categories: deleteCategoryFromContent(state.categories, action.urlSuffix), modalData: {...state.modalData, show: false}, errorGlobal: false}
-                : {...state, modalData: {...state.modalData, show: false}, errorGlobal: true, errorGlobalMsg: action.json[0].message } */
+        case 'DELETE_RECIPE_RECEIVED':
+            return action.ok ? {...state, recipes: [...state.recipes].filter((e) => { return e._id !== action.urlSuffix}), modalData: {...state.modalData, show: false}, errorGlobal: false}
+                : {...state, modalData: {...state.modalData, show: false}, errorGlobal: true, errorGlobalMsg: action.json[0].message }
         // ----------------------------------------------------------
         case 'GET_ALL_ARTICLES': return {...state, articles: undefined, loading: true}
         case 'ALL_ARTICLES_RECEIVED': return {...state, articles: action.json, loading: false, errorGlobal: false }
@@ -51,9 +51,9 @@ const reducer = (state = {}, action) => {
                 return { ...state, currentFormErrors: prepareCurrentFormErrors(action.json), errorGlobal: false };
             }
         }
-        /*        case 'DELETE_ARTICLE_RECEIVED':
-                    return action.ok ? {...state, categories: deleteCategoryFromContent(state.categories, action.urlSuffix), modalData: {...state.modalData, show: false}, errorGlobal: false}
-                        : {...state, modalData: {...state.modalData, show: false}, errorGlobal: true, errorGlobalMsg: action.json[0].message } */
+        case 'DELETE_ARTICLE_RECEIVED':
+            return action.ok ? {...state, articles: [...state.articles].filter((e) => { return e._id !== action.urlSuffix}), modalData: {...state.modalData, show: false}, errorGlobal: false}
+                : {...state, modalData: {...state.modalData, show: false}, errorGlobal: true, errorGlobalMsg: action.json[0].message }
         // ----------------------------------------------------------
         case 'SERVER_ERROR': return {...state, loading: false, errorGlobal: true, errorGlobalMsg: action.err.toString()}
         // ----------------------------------------------------------
