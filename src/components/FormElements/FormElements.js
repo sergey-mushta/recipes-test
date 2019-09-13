@@ -79,9 +79,4 @@ class FormElements extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return { currentFormValues: state.currentFormValues, currentFormErrors: state.currentFormErrors }
-};
-const mapDispatchToProps = {updateFormItem: updateFormItem };
-FormElements = connect(mapStateToProps, mapDispatchToProps)(FormElements);
-export default FormElements;
+export default connect((state) => ({ currentFormValues: state.currentFormValues, currentFormErrors: state.currentFormErrors }), { updateFormItem })(FormElements);

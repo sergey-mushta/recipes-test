@@ -22,13 +22,10 @@ class App extends Component {
                     <Route path="/manage_recipes/" component={ManageRecipes}/>
                     <Route path="/manage_articles/" component={ManageArticles}/>
                 </div>
-                <ModalCommon {...this.props.modalData} />
+                <ModalCommon />
             </Router>
         );
     }
 }
 
-const mapStateToProps = (state) => ({ errorGlobal: state.errorGlobal});
-
-App = connect(mapStateToProps,null)(App);
-export default App;
+export default connect((state) => ({ errorGlobal: state.errorGlobal}),null)(App)

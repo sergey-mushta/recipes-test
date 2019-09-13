@@ -45,8 +45,5 @@ class ManageCategories extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ categories: state.categories, loading: state.loading });
-const mapDispatchToProps = {getAllCategories: getAllCategories, createCategory: createCategory, initModal: initModal};
-ManageCategories = connect(mapStateToProps,mapDispatchToProps)(ManageCategories);
-export default ManageCategories;
+export default connect((state) => ({ categories: state.categories, loading: state.loading }), {getAllCategories, createCategory, initModal})(ManageCategories);
 

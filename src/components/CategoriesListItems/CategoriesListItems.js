@@ -57,6 +57,4 @@ class CategoriesListItems extends Component {
 
 }
 
-const mapDispatchToProps = {initModal: initModal, deleteCategory: deleteCategory, editCategory: editCategory };
-CategoriesListItems = connect(null, mapDispatchToProps)(CategoriesListItems);
-export default CategoriesListItems;
+export default connect(null, {initModal, deleteCategory, editCategory })(CategoriesListItems);

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import LoadingSpinner from "../LoadingSpinner";
+import {createCategory, getAllArticles, initModal} from "../../redux/actions";
+import {connect} from "react-redux";
 
-
-export default class ManageArticles extends Component {
+class ManageArticles extends Component {
 
     render() {
         return  (
@@ -14,3 +15,5 @@ export default class ManageArticles extends Component {
     }
 
 }
+
+export default connect((state) => ({ articles: state.articles, loading: state.loading }),{getAllArticles, createCategory, initModal })(ManageArticles);

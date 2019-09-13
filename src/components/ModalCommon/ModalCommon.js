@@ -4,9 +4,7 @@ import Button from "react-bootstrap/Button";
 import {connect} from "react-redux";
 import {hideModal} from "../../redux/actions/"
 
-
 class ModalCommon extends Component {
-
     static defaultProps = {
         show: false,
         isForm: false,
@@ -22,7 +20,7 @@ class ModalCommon extends Component {
     }
 
     render() {
-        let innerContent = (
+        const innerContent = (
             <>
                 <Modal.Header closeButton>
                     <Modal.Title>{this.props.titleText}</Modal.Title>
@@ -57,8 +55,4 @@ class ModalCommon extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ ...state.modalData, currentFormValues: state.currentFormValues });
-const mapDispatchToProps = { hideModal: hideModal };
-
-ModalCommon = connect(mapStateToProps,mapDispatchToProps)(ModalCommon);
-export default ModalCommon;
+export default connect((state) => ({ ...state.modalData, currentFormValues: state.currentFormValues }),{ hideModal })(ModalCommon)
