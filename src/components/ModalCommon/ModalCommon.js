@@ -32,9 +32,13 @@ class ModalCommon extends Component {
                     <Button variant={this.props.closeBtnVariant} onClick={() => this.props.closeHandler(this.props)}>
                         {this.props.closeBtnText}
                     </Button>
-                    <Button variant={this.props.confirmBtnVariant} onClick={() => this.props.confirmHandler(this.props)} type={this.props.isForm ? 'submit' : 'button'}>
-                        {this.props.confirmBtnText}
-                    </Button>
+                    { this.props.confirmBtnText !== '' &&
+                        <Button variant={this.props.confirmBtnVariant}
+                                onClick={() => this.props.confirmHandler(this.props)}
+                                type={this.props.isForm ? 'submit' : 'button'}>
+                            {this.props.confirmBtnText}
+                        </Button>
+                    }
                 </Modal.Footer>
             </>
         );

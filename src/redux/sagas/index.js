@@ -22,11 +22,9 @@ function* fetchApiCall(actionPrefix, method = 'GET', params = [], urlSuffix = ''
     try {
         let init = { method,  headers: { 'Content-Type': 'application/json'} };
         if (method !== 'GET' && method !== 'HEAD') init.body = JSON.stringify(params);
-
         const response = yield fetch(api_endpoints['API_' + actionPrefix] + urlSuffix, init);
-
         const json = yield response.json();
-        yield put({type: actionPrefix + "_RECEIVED", ok: response.ok, json: json, params: params, urlSuffix: urlSuffix});
+        yield put({type: actionPrefix + "_RECEIVED", ok: response.ok, json, params, urlSuffix});
     } catch(err) {
         yield put({type: "SERVER_ERROR", err });
     }
@@ -48,6 +46,5 @@ export default function* saga() {
         takeEvery('ADD_ARTICLE', (args) => fetchApiCall('ADD_ARTICLE', 'POST', args['params'])),
         takeEvery('EDIT_ARTICLE', (args) => fetchApiCall('EDIT_ARTICLE', 'PUT', args['params'])),
         takeEvery('DELETE_ARTICLE', (args) => fetchApiCall('DELETE_ARTICLE', 'DELETE', [], args['params']['_id'])),
-
     ]);
 }

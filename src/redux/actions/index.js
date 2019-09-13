@@ -10,24 +10,14 @@ const ceCategory = (paramsIn, action) => {
 }
 // ----------------------------------------------------------
 export const getAllArticles = () => ({ type: 'GET_ALL_ARTICLES' })
-export const createArticle = (params) => { return ceArticle(params, 'ADD'); }
-export const editArticle = (params) => { return ceArticle(params, 'EDIT'); }
+export const createArticle = (params) => ({ type: 'ADD_ARTICLE',  params})
+export const editArticle = (params) => ({ type: 'EDIT_ARTICLE',  params})
 export const deleteArticle = (_id) => ({ type: 'DELETE_ARTICLE',  params: { _id }})
-const ceArticle = (paramsIn, action) => {
-    const params = {...paramsIn};
-    if (params.parentId === '') { params.parentId = null; }
-    return { type: action +  '_ARTICLE',  params }
-}
 // ----------------------------------------------------------
 export const getAllRecipes = () => ({ type: 'GET_ALL_RECIPES' })
-export const createRecipe = (params) => { return ceRecipe(params, 'ADD'); }
-export const editRecipe = (params) => { return ceRecipe(params, 'EDIT'); }
+export const createRecipe = (params) => ({ type: 'ADD_RECIPE',  params})
+export const editRecipe = (params) => ({ type: 'EDIT_RECIPE',  params})
 export const deleteRecipe = (_id) => ({ type: 'DELETE_RECIPE',  params: { _id }})
-const ceRecipe = (paramsIn, action) => {
-    const params = {...paramsIn};
-    if (params.parentId === '') { params.parentId = null; }
-    return { type: action +  '_ARTICLE',  params }
-}
 // ----------------------------------------------------------
 export const hideModal = () => ({ type: 'HIDE_MODAL' })
 export const initModal = (modalData) => ({ type: 'INIT_MODAL',  modalData: {...modalData, show: true} })

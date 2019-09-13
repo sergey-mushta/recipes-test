@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LoadingSpinner from "../LoadingSpinner";
 import {getAllCategories, createCategory, initModal} from '../../redux/actions';
 import { connect } from "react-redux";
-import CategoriesListItems from "../CategoriesListItems";
+import ListItemsCategories from "../ListItemsCategories";
 import Button from "react-bootstrap/Button";
 import FormElements from "../FormElements";
 import {ADD_CATEGORY_FORM} from "../../forms";
@@ -37,7 +37,7 @@ class ManageCategories extends Component {
                 {this.props.categories !== undefined && !this.props.loading && (
                     <>
                         <Button variant="secondary" size="sm" className="m-1 mb-3"  onClick={() => { this.initAddModal() } }><i className="fa fa-plus"></i> Add category</Button>
-                        <CategoriesListItems items={this.props.categories}/>
+                        <ListItemsCategories />
                     </>
                 )}
             </>

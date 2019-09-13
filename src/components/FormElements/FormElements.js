@@ -38,6 +38,7 @@ class FormElements extends Component {
                         id: 'form_input_'+item.name,
                         className: "form-control",
                         name: item.name,
+                        required: item.required,
                         value: this.state[item.name],
                         onChange: (e) => this.onChange(item.name, e),
                     }
