@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route,Switch, Redirect } from 'react-router-dom';
-
-import Header from "./Header";
-
 import ErrorGlobal from "./ErrorGlobal";
 import {connect} from "react-redux";
 import {getAllCategories} from "../redux/actions";
@@ -12,6 +9,9 @@ import PageCategory from "./PageCategory";
 import PageArticle from "./PageArticle";
 import PageRecipe from "./PageRecipe";
 import LoadingSpinner from "./LoadingSpinner";
+import Breadcrumbs from "./Breadcrumbs";
+
+import "./App.css";
 
 class App extends Component {
 
@@ -22,7 +22,6 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <Header/>
                 {this.props.errorGlobal && <ErrorGlobal />}
                 <div className="container mt-3 h-100">
                     <div className="row">
@@ -36,7 +35,7 @@ class App extends Component {
                                 {this.props.loading > 0 && <LoadingSpinner/> }
                                 <div className={this.props.loading > 0 ? 'd-none' : ''}>
                                     <Switch>
-                                        <Route path="/" exact render={() => <h3>Welcome to recipes frontend</h3>}/>
+                                        <Route path="/" exact render={(props) => <><Breadcrumbs {...props.match} /><h3>Welcome to recipes frontend</h3></>}/>
                                         <Route path="/category/:_id" component={PageCategory}/>
                                         <Route path="/article/:_id" component={PageArticle}/>
                                         <Route path="/recipe/:_id" component={PageRecipe}/>

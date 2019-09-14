@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {getArticle} from "../../redux/actions";
 import {Redirect} from "react-router-dom";
+import Breadcrumbs from "../Breadcrumbs";
 
 class PageArticle extends Component {
     componentDidMount() {
@@ -12,7 +13,8 @@ class PageArticle extends Component {
         else if(this.props.article === false) return <Redirect to="/not_found"/>
         const item = this.props.article;
         return (<>
-                <h2>{item.title}</h2>
+                <Breadcrumbs {...this.props.match} />
+                <h5 className="mt-2">Article: {item.title}</h5>
                 <p><small><i>{item.description}</i></small></p>
                 <p>{item.text}</p>
             </>);

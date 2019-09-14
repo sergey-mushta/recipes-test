@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import ListItemsArticles from "../ListItemsArticles/ListItemsArticles";
-import ListItemsRecipes from "../ListItemsRecipes/ListItemsRecipes";
+import ListItemsArticles from "../ListItemsArticles";
+import ListItemsRecipes from "../ListItemsRecipes";
 import {setCurrentCategoryId} from "../../redux/actions";
+import Breadcrumbs from "../Breadcrumbs";
 
 class PageCategory extends Component {
 
@@ -14,9 +15,9 @@ class PageCategory extends Component {
         if (_currentCategory === undefined) return <Redirect to="/not_found"/>;
 
         this.props.setCurrentCategoryId(_id);
-
         return <>
-                <h4>Category: {_currentCategory.title}</h4>
+                <Breadcrumbs {...this.props.match} />
+                <h5 className="mt-2">Category: {_currentCategory.title}</h5>
                 <ListItemsRecipes currentCategoryId={_id}/>
                 <ListItemsArticles currentCategoryId={_id}/>
             </>;

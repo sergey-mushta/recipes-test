@@ -9,7 +9,6 @@ class CategoriesTree extends Component {
     render() {
         return this.props.categories !== undefined && (
             <>
-                {this.props.parentId === null && <h4 className="mb-3">Categories</h4>}
                 <ul className="categories-tree pl-2">
                     {this.props.categories.filter((e) => e['parentId'] === this.props.parentId).sort((a, b) => a.title.localeCompare(b.title)).map((item) => {
                         return (
