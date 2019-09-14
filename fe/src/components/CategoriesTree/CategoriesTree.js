@@ -14,7 +14,7 @@ class CategoriesTree extends Component {
                     {this.props.categories.filter((e) => e['parentId'] === this.props.parentId).sort((a, b) => a.title.localeCompare(b.title)).map((item) => {
                         return (
                             <li key={item._id} >
-                                <NavLink to={"/category/" + item._id}>{item.title}</NavLink>
+                                <NavLink to={"/category/" + item._id} className="category-url">{item.title}</NavLink>
                                 <CategoriesTree key={'sub_'+item._id} parentId={item._id} categories={this.props.categories}  />
                             </li>
                         );

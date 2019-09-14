@@ -1,1 +1,6 @@
 .categories-tree{ list-style-type: none; }
+
+.categories-tree .category-url {
+    color: #555;
+}
+

@@ -3,19 +3,16 @@ import { API_BASE } from "../../config/";
 
 const api_endpoints = {
     API_ALL_CATEGORIES: API_BASE + "category/all",
-
-    API_ALL_RECIPES: API_BASE + "recipe/all",
-
-    API_ALL_ARTICLES: API_BASE + "article/all",
+    API_ARTICLES_BY_CATEGORY: API_BASE + "article/byCategory/",
+    API_RECIPES_BY_CATEGORY: API_BASE + "recipe/byCategory/",
 };
 
-function* fetchApiCall(actionPrefix, method = 'GET', params = [], urlSuffix = '') {
+function* fetchApiCallGet(actionPrefix, urlSuffix = '') {
     try {
-        let init = { method,  headers: { 'Content-Type': 'application/json'} };
-        if (method !== 'GET' && method !== 'HEAD') init.body = JSON.stringify(params);
+        let init = { headers: { 'Content-Type': 'application/json'} };
         const response = yield fetch(api_endpoints['API_' + actionPrefix] + urlSuffix, init);
         const json = yield response.json();
-        yield put({type: actionPrefix + "_RECEIVED", ok: response.ok, json, params, urlSuffix});
+        yield put({type: actionPrefix + "_RECEIVED", ok: response.ok, json, urlSuffix});
     } catch(err) {
         yield put({type: "SERVER_ERROR", err });
     }
@@ -23,10 +20,8 @@ function* fetchApiCall(actionPrefix, method = 'GET', params = [], urlSuffix = ''
 
 export default function* saga() {
     yield all([
-        takeEvery('GET_ALL_CATEGORIES', () => fetchApiCall('ALL_CATEGORIES', 'GET')),
-
-        takeEvery('GET_ALL_RECIPES', () => fetchApiCall('ALL_RECIPES', 'GET')),
-
-        takeEvery('GET_ALL_ARTICLES', () => fetchApiCall('ALL_ARTICLES', 'GET')),
+        takeEvery('GET_ALL_CATEGORIES', () => fetchApiCallGet('ALL_CATEGORIES')),
+        takeEvery('GET_ARTICLES_BY_CATEGORY', (args) => fetchApiCallGet('ARTICLES_BY_CATEGORY', args['_id'])),
+        takeEvery('GET_RECIPES_BY_CATEGORY', (args) => fetchApiCallGet('RECIPES_BY_CATEGORY', args['_id'])),
     ]);
 }

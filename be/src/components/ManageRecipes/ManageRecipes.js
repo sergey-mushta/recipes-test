@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoadingSpinner from "../LoadingSpinner";
 import {connect} from "react-redux";
 import {createRecipe, getAllCategories, getAllRecipes, initModal} from "../../redux/actions";
 import Button from "react-bootstrap/Button";
@@ -35,8 +34,7 @@ class ManageRecipes extends Component {
         return  (
             <>
                 <h3>Manage Recipes</h3>
-                <LoadingSpinner />
-                {this.props.recipes !== undefined && this.props.categories !== undefined && !this.props.loading && (
+                {this.props.recipes !== undefined && this.props.categories !== undefined &&  (
                     <>
                         <Button variant="secondary" size="sm" className="m-1 mb-3"  onClick={() => { this.initAddModal() } }><i className="fa fa-plus"></i> Add recipe</Button>
                         <ListItemsRecipes />
@@ -48,4 +46,4 @@ class ManageRecipes extends Component {
 
 }
 
-export default connect((state) => ({ recipes: state.recipes, categories: state.categories, loading: state.loading }),{getAllRecipes, getAllCategories, createRecipe, initModal })(ManageRecipes);
+export default connect((state) => ({ recipes: state.recipes, categories: state.categories }),{getAllRecipes, getAllCategories, createRecipe, initModal })(ManageRecipes);

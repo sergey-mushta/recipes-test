@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LoadingSpinner from "../LoadingSpinner";
 import {getAllCategories, createCategory, initModal} from '../../redux/actions';
 import { connect } from "react-redux";
 import ListItemsCategories from "../ListItemsCategories";
@@ -33,8 +32,7 @@ class ManageCategories extends Component {
         return  (
             <>
                 <h3 className="mb-3">Manage Categories</h3>
-                <LoadingSpinner />
-                {this.props.categories !== undefined && !this.props.loading && (
+                {this.props.categories !== undefined &&  (
                     <>
                         <Button variant="secondary" size="sm" className="m-1 mb-3"  onClick={() => { this.initAddModal() } }><i className="fa fa-plus"></i> Add category</Button>
                         <ListItemsCategories />
@@ -45,5 +43,5 @@ class ManageCategories extends Component {
     }
 }
 
-export default connect((state) => ({ categories: state.categories, loading: state.loading }), {getAllCategories, createCategory, initModal})(ManageCategories);
+export default connect((state) => ({ categories: state.categories }), {getAllCategories, createCategory, initModal})(ManageCategories);
 
