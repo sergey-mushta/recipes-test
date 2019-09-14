@@ -10,6 +10,12 @@ const reducer = (state = {}, action) => {
         case 'GET_ARTICLES_BY_CATEGORY': return {...state, articles: undefined, loading: (parseInt(state.loading) || 0) + 1}
         case 'ARTICLES_BY_CATEGORY_RECEIVED': return {...state, articles: action.json, loading: state.loading-1, errorGlobal: false }
         // ----------------------------------------------------------
+        case 'GET_RECIPE': return {...state, article: undefined, loading: (parseInt(state.loading) || 0) + 1}
+        case 'RECIPE_RECEIVED': return {...state, recipe: action.ok ? action.json : false, loading: state.loading-1, errorGlobal: false }
+        // ----------------------------------------------------------
+        case 'GET_ARTICLE': return {...state, article: undefined, loading: (parseInt(state.loading) || 0) + 1}
+        case 'ARTICLE_RECEIVED': return {...state, article: action.ok ? action.json : false, loading: state.loading-1, errorGlobal: false }
+        // ----------------------------------------------------------
         case 'SERVER_ERROR': return {...state, loading: state.loading-1, errorGlobal: true, errorGlobalMsg: action.err.toString()}
         // ----------------------------------------------------------
         case 'SET_CURRENT_CATEGORY_ID': return {...state, currentCategoryId: action._id }
