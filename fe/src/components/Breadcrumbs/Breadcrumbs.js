@@ -54,6 +54,7 @@ class Breadcrumbs extends Component {
                     first = false;
                     return content;
                 }) }
+                <hr />
             </>
         );
     }

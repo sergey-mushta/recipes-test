@@ -6,8 +6,7 @@ import {getAllCategories} from "../redux/actions";
 import CategoriesTree from "./CategoriesTree";
 import PageNotFound from "./PageNotFound";
 import PageCategory from "./PageCategory";
-import PageArticle from "./PageArticle";
-import PageRecipe from "./PageRecipe";
+import PageItem from "./PageItem";
 import LoadingSpinner from "./LoadingSpinner";
 import Breadcrumbs from "./Breadcrumbs";
 
@@ -37,8 +36,8 @@ class App extends Component {
                                     <Switch>
                                         <Route path="/" exact render={(props) => <><Breadcrumbs {...props.match} /><h3>Welcome to recipes frontend</h3></>}/>
                                         <Route path="/category/:_id" component={PageCategory}/>
-                                        <Route path="/article/:_id" component={PageArticle}/>
-                                        <Route path="/recipe/:_id" component={PageRecipe}/>
+                                        <Route path="/article/:_id" render={(props) => <PageItem {...props} source="article"/>}/>
+                                        <Route path="/recipe/:_id" render={(props) => <PageItem {...props} source="recipe"/>}/>
                                         <Route path="/not_found" component={PageNotFound}/>
                                         <Route path="*" render={() => <Redirect to="/not_found"/>}/>
                                     </Switch>

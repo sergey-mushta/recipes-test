@@ -24,9 +24,7 @@ function* fetchApiCallGet(actionPrefix, urlSuffix = '') {
 export default function* saga() {
     yield all([
         takeEvery('GET_ALL_CATEGORIES', () => fetchApiCallGet('ALL_CATEGORIES')),
-        takeEvery('GET_ARTICLES_BY_CATEGORY', (args) => fetchApiCallGet('ARTICLES_BY_CATEGORY', args['_id'])),
-        takeEvery('GET_RECIPES_BY_CATEGORY', (args) => fetchApiCallGet('RECIPES_BY_CATEGORY', args['_id'])),
-        takeEvery('GET_ARTICLE', (args) => fetchApiCallGet('ARTICLE', args['_id'])),
-        takeEvery('GET_RECIPE', (args) => fetchApiCallGet('RECIPE', args['_id'])),
+        takeEvery('GET_ITEMS_BY_CATEGORY', (args) => fetchApiCallGet(args['source'].toUpperCase() + 'S_BY_CATEGORY', args['_id'])),
+        takeEvery('GET_ITEM', (args) => fetchApiCallGet(args['source'].toUpperCase(), args['_id'])),
     ]);
 }

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import ListItemsArticles from "../ListItemsArticles";
-import ListItemsRecipes from "../ListItemsRecipes";
+import ListItems from "../ListItems";
 import {setCurrentCategoryId} from "../../redux/actions";
 import Breadcrumbs from "../Breadcrumbs";
 
@@ -18,8 +17,10 @@ class PageCategory extends Component {
         return <>
                 <Breadcrumbs {...this.props.match} />
                 <h5 className="mt-2">Category: {_currentCategory.title}</h5>
-                <ListItemsRecipes currentCategoryId={_id}/>
-                <ListItemsArticles currentCategoryId={_id}/>
+                <hr />
+                <ListItems source="recipe" currentCategoryId={_id}/>
+                <hr />
+                <ListItems source="article" currentCategoryId={_id}/>
             </>;
     }
 }
