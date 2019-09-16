@@ -16,10 +16,12 @@ yarn start
 
 2) build/run prod version (requirements: node + yarn)
 - navigate to either /be/ or /fe/ 
-yarn build (there's already prebuilt code in repository, so if no changes were made, this step may be skipped)
+yarn build (there's already prebuilt code in repositgory, so if no changes were made, this step may be skipped)
 - deploy /build/ folder contents to your server.
  
-!IMPORTANT! Build must be located on domain root.
+!IMPORTANT! Current build must be located on domain root.
+See https://create-react-app.dev/docs/deployment#building-for-relative-paths for
+setting custom root paths.
 
 Settings:
 API endpoint can be set by modifying
