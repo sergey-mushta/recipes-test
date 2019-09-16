@@ -31,14 +31,14 @@ class Breadcrumbs extends Component {
                 links = links.concat(this.getParentCategories(this.props.currentCategoryId));
                 break;
             case "/article/:_id":
-                if(this.props.article === undefined) return null;
-                links = links.concat(this.getParentCategories(this.props.article.categoryId));
-                links.push({to:'/article/'+this.props.article._id, exact: true, text: this.props.article.title});
+                if(this.props.item === undefined) return null;
+                links = links.concat(this.getParentCategories(this.props.item.categoryId));
+                links.push({to:'/article/'+this.props.item._id, exact: true, text: this.props.item.title});
                 break;
             case "/recipe/:_id":
-                if(this.props.recipe === undefined) return null;
-                links = links.concat(this.getParentCategories(this.props.recipe.categoryId));
-                links.push({to:'/recipe/'+this.props.recipe._id, exact: true, text: this.props.recipe.title});
+                if(this.props.item === undefined) return null;
+                links = links.concat(this.getParentCategories(this.props.item.categoryId));
+                links.push({to:'/recipe/'+this.props.item._id, exact: true, text: this.props.item.title});
                 break;
             case "/not_found":
                 links.push({to:'/not_found', exact: true, text: 'Page not found'});
@@ -60,4 +60,4 @@ class Breadcrumbs extends Component {
     }
 }
 
-export default connect((state) => ({ categories: state.categories, currentCategoryId: state.currentCategoryId, loading: state.loading, article: state.article, recipe: state.recipe }), null)(Breadcrumbs);
+export default connect((state) => ({ categories: state.categories, currentCategoryId: state.currentCategoryId, loading: state.loading, item:state.item }), null)(Breadcrumbs);
