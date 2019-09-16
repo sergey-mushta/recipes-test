@@ -3,6 +3,9 @@ Test react app (recipes)
 /be/ - backend part
 /fe/ - frontend part
 
+Both parts are made to work independently, for security purposes.
+
+
 Deployment:
 
 1) run dev version (requirements: node + yarn)
@@ -17,3 +20,8 @@ yarn build (there's already prebuilt code in repository, so if no changes were m
 - deploy /build/ folder contents to your server.
  
 !IMPORTANT! Build must be located on domain root.
+
+Settings:
+API endpoint can be set by modifying
+/be/src/config/index.js
+/fe/src/config/index.js
