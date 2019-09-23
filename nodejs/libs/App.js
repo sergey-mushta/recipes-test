@@ -2,9 +2,9 @@ const express = require("express")
 const bodyParser = require("body-parser")
 
 const root = require("./routes/root");
-const categories = require("./routes/categories");
-const articles = require("./routes/articles");
-const recipes = require("./routes/recipes");
+const category = require("./routes/category");
+const article = require("./routes/article");
+const recipe = require("./routes/recipe");
 
 const app = express()
 
@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', root);
 app.use('/api/', root);
-app.use('/api/categories/', categories);
-app.use('/api/articles/', articles);
-app.use('/api/recipes/', recipes);
+app.use('/api/category/', category);
+app.use('/api/article/', article);
+app.use('/api/recipe/', recipe);
 
 
 

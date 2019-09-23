@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var Category = new Schema({
+const Category = new Schema({
     title: {
         type: String,
         required: true
@@ -9,7 +9,8 @@ var Category = new Schema({
 
     parentId: {
         type: String,
-        required: false
+        required: false,
+        default: null
     }
 });
 

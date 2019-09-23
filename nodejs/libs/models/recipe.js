@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var Recipe = new Schema({
+const Recipe = new Schema({
     categoryId: {
         type: String,
         required: true
